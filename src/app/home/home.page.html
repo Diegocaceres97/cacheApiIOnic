@@ -1,20 +1,33 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header>
+  <ion-toolbar color="primary">
     <ion-title>
-      Blank
+      DevDactic Caching
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="refreshUsers($event)" pullFactor="0.8" pullMin="60" pullMax="120">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+<ion-button (click)="refreshUsers()" expand="full">
+  Load Users
+</ion-button>
+<ion-button (click)="loadChuckJoke(false)" expand="full">
+  Load Joke
+</ion-button>
+<ion-button (click)="loadChuckJoke(true)" expand="full">
+  Refresh Joke
+</ion-button>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-list>
+  <ion-item *ngFor="let user of users">
+    <ion-avatar>
+      <img [src]="user.picture.medium" />
+    </ion-avatar>
+    <h2 class="ion-text-capitalize">{{user.name?.first}} {{user.name?.last}}</h2>
+  </ion-item>
+</ion-list>
+
+
 </ion-content>
