@@ -1,0 +1,7 @@
+{
+  "name": "devdacticCaching",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
